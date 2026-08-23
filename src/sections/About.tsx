@@ -104,12 +104,14 @@ export function About() {
             <Reveal>
               <p className="text-lg sm:text-xl leading-relaxed text-ink/78 max-w-2xl">
                 My career has never followed a completely straight line. I started with{" "}
-                <span className="mark-aqua font-medium">computer science and enterprise technology</span>, moved into{" "}
-                <span className="mark-coral font-medium">business analytics</span>, explored product and data analytics,
-                and became increasingly interested in artificial intelligence and automation. I moved from India to
-                France for my M.Sc. at NEOMA — and that transition changed the way I approach technology: not only how
-                systems work, but <span className="mark-gold font-medium">what the data means</span>, what business
-                problem it represents, and how technology can improve the outcome.
+                <strong className="italic font-bold text-teal">computer science and enterprise technology</strong>, moved
+                into <strong className="italic font-bold text-coral">business analytics</strong>, explored product and
+                data analytics, and became increasingly interested in{" "}
+                <strong className="italic font-bold text-teal">artificial intelligence and automation</strong>. I moved
+                from India to France for my M.Sc. at NEOMA — and that transition changed the way I approach technology:
+                not only how systems work, but{" "}
+                <strong className="italic font-bold text-[#c77b12]">what the data means</strong>, what business problem
+                it represents, and how technology can improve the outcome.
               </p>
             </Reveal>
 

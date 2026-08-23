@@ -1,11 +1,11 @@
-export const IMG_REEF =
-  "https://image.qwenlm.ai/generated-images/6e85c962-bcf6-4413-9ba7-0318e52497de/_result.png";
-export const IMG_LAGOON =
-  "https://image.qwenlm.ai/generated-images/197a284e-cbff-4af8-8a86-91fdadedefb3/_result.png";
-export const IMG_FUNNEL =
-  "https://image.qwenlm.ai/generated-images/68cefeee-09fe-4dff-b7d7-9f81b98e2577/_result.png";
-export const IMG_KELP =
-  "https://image.qwenlm.ai/generated-images/2267c647-049e-4b5f-af95-ee338e9a65b5/_result.png";
+export const IMG_FINANCE =
+  "https://image.qwenlm.ai/generated-images/cc39413d-dcc5-4c43-82d2-febea1bb94ce/_result.png";
+export const IMG_AI_DASH =
+  "https://image.qwenlm.ai/generated-images/b1bcc877-db89-45be-8998-3f2d0d242904/_result.png";
+export const IMG_ONBOARD =
+  "https://image.qwenlm.ai/generated-images/332ef360-8319-4285-904b-99b0addfa25d/_result.png";
+export const IMG_CKD =
+  "https://image.qwenlm.ai/generated-images/d862a4f8-ee70-486a-a850-306392c28b93/_result.png";
 export const IMG_AUTOMATION =
   "https://image.qwenlm.ai/generated-images/be1d43da-1a03-477b-aa2e-58067a45ebb7/_result.png";
 
@@ -131,6 +131,13 @@ export interface TimelineNode {
 }
 
 export const TIMELINE: TimelineNode[] = [
+  {
+    period: "2017 – 2021",
+    place: "Hyderabad, India",
+    title: "B.E. · Computer Science & Engineering",
+    org: "Stanley College of Engineering & Technology",
+    desc: "Foundations in data structures, algorithms, database management systems, AI, data mining and machine learning.",
+  },
   {
     period: "2021",
     place: "Remote, India",
@@ -315,7 +322,7 @@ export const PROJECTS: Project[] = [
     name: "Financial Transactions Analytics",
     tagline: "Turning 13.3M+ financial transactions into business insights",
     field: "end-to-end financial analytics",
-    image: IMG_REEF,
+    image: IMG_FINANCE,
     tint: "bg-seafoam/35",
     objective:
       "An end-to-end financial analytics solution for understanding customer spending behavior, transaction performance, credit utilization and operational risk.",
@@ -340,7 +347,7 @@ export const PROJECTS: Project[] = [
     name: "Global AI Content Impact Dashboard",
     tagline: "Understanding the business impact of artificial intelligence",
     field: "business intelligence · tableau",
-    image: IMG_LAGOON,
+    image: IMG_AI_DASH,
     tint: "bg-blush/45",
     objective:
       "An interactive business intelligence dashboard analyzing the global impact of AI across countries and industries — adoption, business performance, workforce transformation and consumer sentiment.",
@@ -365,7 +372,7 @@ export const PROJECTS: Project[] = [
     name: "NEOMA Student Onboarding Platform",
     tagline: "Designing a better international student experience",
     field: "product analytics · AI",
-    image: IMG_FUNNEL,
+    image: IMG_ONBOARD,
     tint: "bg-mist",
     objective:
       "A centralized digital onboarding platform bringing academic, administrative, accommodation, transportation and campus resources into one experience for incoming international students.",
@@ -390,7 +397,7 @@ export const PROJECTS: Project[] = [
     name: "Chronic Kidney Disease Prediction",
     tagline: "Machine learning for early risk prediction",
     field: "machine learning · healthcare",
-    image: IMG_KELP,
+    image: IMG_CKD,
     tint: "bg-seafoam/40",
     objective:
       "A machine-learning prediction system capable of classifying patients as CKD or non-CKD using clinical data — delivered as a user-facing web application.",
@@ -596,12 +603,13 @@ export const TARGET_ROLES = [
   "Business Intelligence Analyst",
   "Product Analyst",
   "Analytics Engineer",
+  "Junior Data Scientist",
   "Junior Data Engineer",
   "Junior AI Engineer",
 ];
 
 export const WORK_MODELS = ["Remote", "Hybrid", "On-site"];
-export const LOCATIONS = ["India", "Europe", "International"];
+export const LOCATIONS = ["India", "Europe", "Worldwide"];
 
 /* ---------------- contact ---------------- */
 export const CONTACT = {

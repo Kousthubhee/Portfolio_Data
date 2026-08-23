@@ -1,63 +1,4 @@
-import { useCountUp } from "../lib/hooks";
 import { Reveal } from "../components/Chrome";
-
-function StatChip({
-  value,
-  decimals = 0,
-  suffix,
-  label,
-  delay,
-}: {
-  value: number;
-  decimals?: number;
-  suffix: string;
-  label: string;
-  delay: number;
-}) {
-  const { ref, text } = useCountUp(value, { decimals, duration: 1900 });
-  return (
-    <Reveal delay={delay} variant="pop">
-      <div className="group flex items-baseline gap-2 rounded-xl border border-ink/10 bg-shell/75 backdrop-blur-sm px-4 py-3 shadow-[0_8px_30px_rgba(13,59,64,0.08)] transition-all duration-300 hover:-translate-y-1 hover:border-coral/50 hover:shadow-[0_14px_36px_rgba(255,122,104,0.16)]">
-        <span ref={ref} className="font-display font-bold text-2xl sm:text-3xl text-ink tabular-nums">
-          {text}
-        </span>
-        <span className="font-display font-bold text-lg text-coral">{suffix}</span>
-        <span className="ml-1 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.14em] text-ink/55 leading-tight">
-          {label}
-        </span>
-      </div>
-    </Reveal>
-  );
-}
-
-function Slate() {
-  const rows: [string, string][] = [
-    ["prod.", "KK · 2026"],
-    ["sc. 01", "“The Origin”"],
-    ["take", "05 / ∞"],
-    ["roll", "HYD → ROUEN → HYD"],
-  ];
-  return (
-    <div className="rounded-xl overflow-hidden border border-ink/25 shadow-[0_16px_44px_rgba(13,59,64,0.2)] bg-abyss/95 text-mist font-mono w-60 select-none transition-transform duration-500 hover:-rotate-1">
-      <div className="flex h-9">
-        {[0, 1, 2, 3].map((i) => (
-          <span
-            key={i}
-            className={`flex-1 ${i % 2 ? "bg-ink" : "bg-shell"} ${i === 3 ? "bg-coral animate-clap" : ""}`}
-          />
-        ))}
-      </div>
-      <div className="p-4 space-y-2">
-        {rows.map(([k, v]) => (
-          <div key={k} className="flex items-baseline gap-3 text-[11px]">
-            <span className="w-12 shrink-0 uppercase tracking-[0.18em] text-mist/45">{k}</span>
-            <span className="tracking-[0.06em] text-mist/90">{v}</span>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
 
 export default function Hero() {
   return (
@@ -83,9 +24,11 @@ export default function Hero() {
 
         <Reveal delay={900}>
           <p className="mx-auto mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-ink/75">
-            A career moving across <em className="font-medium not-italic mark-aqua">technology, enterprise systems and business analytics</em> —
-            from Infosys server rooms to NEOMA classrooms in Rouen, now exploring how{" "}
-            <em className="font-medium not-italic mark-coral">AI and automation</em> turn data into practical business outcomes.
+            A career moving across{" "}
+            <em className="font-semibold not-italic mark-aqua">technology, enterprise systems and business analytics</em>{" "}
+            — from Infosys server rooms to NEOMA classrooms in France, now exploring how{" "}
+            <em className="font-semibold not-italic mark-coral">AI and automation</em> turn data into practical business
+            outcomes.
           </p>
         </Reveal>
 
@@ -122,37 +65,26 @@ export default function Hero() {
         </Reveal>
       </div>
 
-      {/* slate + coordinates + stat chips */}
-      <div className="relative z-10 px-6 sm:px-12 pb-20 sm:pb-24 pt-10 grid lg:grid-cols-[auto_1fr] items-end gap-8">
-        <Reveal delay={1000} variant="pop" className="hidden lg:block">
-          <Slate />
-        </Reveal>
-        <div>
-          <Reveal delay={700}>
-            <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-ink/55 mb-4">
-              <p>
-                17.3850° N — 78.4867° E · <span className="text-teal">Hyderabad</span>
-              </p>
-              <p>
-                status <span className="text-coral">open to relocation</span> · India &amp; internationally
-              </p>
-            </div>
-          </Reveal>
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <StatChip value={13.3} decimals={1} suffix="M+" label="transactions analyzed" delay={800} />
-            <StatChip value={240} suffix="+" label="students researched" delay={920} />
-            <StatChip value={40} suffix="%" label="reporting automated" delay={1040} />
-            <StatChip value={93} suffix="%" label="model accuracy" delay={1160} />
-            <Reveal delay={1280} className="ml-auto hidden sm:block">
-              <div className="flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink/55">
-                <span>roll the journey</span>
-                <span className="relative block h-12 w-[2px] bg-ink/15 overflow-hidden">
-                  <span className="dive-line absolute inset-0 bg-coral" />
-                </span>
-              </div>
-            </Reveal>
+      {/* coordinates + roll cue */}
+      <div className="relative z-10 px-6 sm:px-12 pb-20 sm:pb-24 pt-10">
+        <Reveal delay={700}>
+          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-ink/55">
+            <p>
+              17.3850° N — 78.4867° E · <span className="text-teal">Hyderabad</span>
+            </p>
+            <p>
+              status <span className="text-coral">open to relocation</span> · India &amp; internationally
+            </p>
           </div>
-        </div>
+        </Reveal>
+        <Reveal delay={900}>
+          <div className="mt-5 flex items-center justify-end gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-ink/55">
+            <span>roll the journey</span>
+            <span className="relative block h-12 w-[2px] bg-ink/15 overflow-hidden">
+              <span className="dive-line absolute inset-0 bg-coral" />
+            </span>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

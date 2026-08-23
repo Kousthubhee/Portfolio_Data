@@ -1,90 +1,90 @@
-import { FIELD_NOTES, PROCESS } from "../lib/data";
-import { useClock } from "../lib/hooks";
-import { IconSignal, IconWaveMark, Reveal, SectionHeading } from "../components/Chrome";
+import {
+  CONTACT,
+  EDUCATION,
+  EXPERIENCE,
+  LOCATIONS,
+  TARGET_ROLES,
+  TIMELINE,
+  WORK_MODELS,
+} from "../lib/data";
+import { IconSignal, Reveal, SectionHeading } from "../components/Chrome";
 
-export function Process() {
+/* ---------------- career timeline + education ---------------- */
+export function Journey() {
   return (
-    <section id="process" className="relative z-10 scroll-mt-24">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-24 sm:py-32">
+    <section id="journey" className="relative z-10 scroll-mt-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28">
         <SectionHeading
-          kicker="method · 04"
+          kicker="the route · 03"
           title={[
-            <span key="a">From raw tide</span>,
+            <span key="a">India → France → India</span>,
             <span key="b">
-              to insight<span className="text-coral">.</span>
+              → what&rsquo;s next?<span className="text-coral">.</span>
             </span>,
           ]}
-          note="The same five movements on every project — only the depth changes. It's how messy questions become confident decisions."
+          note="A journey across countries and disciplines — increasingly toward the intersection of data and AI."
         />
-        <div className="relative ml-3 sm:ml-6">
-          {/* growing line */}
-          <span className="absolute left-0 top-2 bottom-2 w-[2.5px] rounded-full bg-gradient-to-b from-aqua via-teal to-coral" aria-hidden />
-          <ol className="space-y-10 sm:space-y-12">
-            {PROCESS.map((step, i) => (
-              <li key={step.step} className="relative pl-10 sm:pl-16">
-                <span
-                  className="absolute -left-[9px] top-1.5 w-5 h-5 rounded-full border-[3px] border-shell bg-teal shadow-[0_0_0_3px_rgba(15,125,124,0.25)]"
-                  aria-hidden
-                />
-                <Reveal variant="left" delay={i * 90}>
-                  <div className="group grid sm:grid-cols-[110px_1fr] gap-2 sm:gap-8 items-baseline rounded-2xl border border-transparent px-2 py-1 transition-all duration-300 hover:border-ink/10 hover:bg-shell/70">
-                    <div className="flex items-baseline gap-3">
-                      <span className="font-mono text-xs text-coral">{step.step}</span>
-                      <h3 className="font-display font-bold text-2xl sm:text-3xl text-ink tracking-tight transition-colors group-hover:text-teal">
-                        {step.title}
-                      </h3>
+
+        <div className="relative max-w-3xl">
+          <span className="absolute left-[13px] sm:left-[17px] top-3 bottom-8 w-[2.5px] rounded-full bg-gradient-to-b from-teal via-coral to-gold opacity-45" aria-hidden />
+          <div className="space-y-4">
+            {TIMELINE.map((n, i) => (
+              <Reveal key={n.period + n.title} delay={i * 80} variant={i % 2 ? "left" : "up"}>
+                <article
+                  className={`relative pl-12 sm:pl-16 ${n.future ? "opacity-100" : ""}`}
+                >
+                  <span
+                    className={`absolute left-0 top-6 grid h-7 w-7 sm:h-9 sm:w-9 place-items-center rounded-full border-2 transition-all duration-300 ${
+                      n.future
+                        ? "border-dashed border-coral bg-shell text-coral animate-blink"
+                        : "border-teal bg-shell text-teal shadow-[0_0_0_5px_rgba(15,125,124,0.12)]"
+                    }`}
+                  >
+                    <svg viewBox="0 0 20 20" className="w-3.5 h-3.5" aria-hidden>
+                      {n.future ? (
+                        <path d="M3 10h4l2-5 3 10 2-5h3" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                      ) : (
+                        <path d="M2 13c2.5-4 4.5-4 6.5 0s4 4 6.5 0 3-3 4.5-1" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                      )}
+                    </svg>
+                  </span>
+                  <div className="group rounded-[22px] border border-ink/10 bg-shell/85 backdrop-blur-md p-5 sm:p-6 transition-all duration-500 hover:-translate-y-1 hover:border-coral/40 hover:shadow-[0_18px_44px_rgba(13,59,64,0.13)]">
+                    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-coral font-semibold">{n.period}</span>
+                      <span className="font-mono text-[10.5px] uppercase tracking-[0.14em] text-ink/45">{n.place}</span>
                     </div>
-                    <p className="text-[15.5px] leading-relaxed text-ink/70 max-w-2xl">{step.text}</p>
+                    <h3 className="mt-2 font-display font-bold text-xl sm:text-2xl text-ink tracking-tight">{n.title}</h3>
+                    <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-teal mt-1">{n.org}</p>
+                    <p className="mt-2.5 text-[14px] leading-relaxed text-ink/70 max-w-xl">{n.desc}</p>
                   </div>
-                </Reveal>
-              </li>
+                </article>
+              </Reveal>
             ))}
-          </ol>
+          </div>
         </div>
-      </div>
-    </section>
-  );
-}
 
-export function FieldNotes() {
-  return (
-    <section id="notes" className="relative z-10 scroll-mt-24">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 pb-24 sm:pb-32">
-        <SectionHeading
-          kicker="field notes · 05"
-          title={[
-            <span key="a">Postcards from</span>,
-            <span key="b">
-              the crews I've sailed with<span className="text-coral">.</span>
-            </span>,
-          ]}
-          note="Unedited, except where legal asked nicely. Hover to straighten a card — the words stay exactly as written."
-        />
-        <div className="grid md:grid-cols-3 gap-8 lg:gap-10 items-start">
-          {FIELD_NOTES.map((n, i) => (
-            <Reveal key={n.author} delay={i * 140} variant="pop">
-              <figure
-                className={`relative rounded-lg border border-ink/10 bg-shell px-7 pt-9 pb-7 shadow-[0_18px_50px_rgba(13,59,64,0.14)] transition-all duration-500 hover:rotate-0 hover:-translate-y-2 hover:shadow-[0_28px_70px_rgba(13,59,64,0.2)] ${n.rotate} ${i === 1 ? "md:mt-10" : ""}`}
-              >
-                <span className="tape -top-3 left-1/2 -translate-x-1/2 -rotate-3" aria-hidden />
-                {/* stamp */}
-                <span className="absolute top-4 right-4 flex w-12 h-12 items-center justify-center rounded-sm border-2 border-dashed border-coral/60 text-coral rotate-6" aria-hidden>
-                  <svg viewBox="0 0 24 24" className="w-6 h-6">
-                    <path d="M3 15c2.5-3.8 4.5-3.8 6.8 0s4.3 3.8 6.6 0 3.6-3.4 4.6-.6" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                    <circle cx="17.5" cy="7" r="2" fill="#f2b544" />
-                  </svg>
-                </span>
-                <blockquote className="font-display font-medium text-[17px] leading-snug text-ink pr-10">
-                  “{n.quote}”
-                </blockquote>
-                <figcaption className="mt-6 pt-4 border-t border-dashed border-ink/15">
-                  <div className="font-semibold text-ink text-[15px]">{n.author}</div>
-                  <div className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-teal mt-1">{n.role}</div>
-                  <div className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/40 mt-2">
-                    postmarked · {n.place}
-                  </div>
-                </figcaption>
-              </figure>
+        {/* education */}
+        <div className="mt-20 grid md:grid-cols-2 gap-6">
+          {EDUCATION.map((e, i) => (
+            <Reveal key={e.school} delay={i * 120} variant="pop">
+              <article className="group h-full relative overflow-hidden rounded-[24px] border border-ink/10 bg-gradient-to-br from-shell/95 to-mist/80 backdrop-blur-md p-7 sm:p-8 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_22px_54px_rgba(13,59,64,0.15)]">
+                <svg viewBox="0 0 60 60" className="absolute -right-4 -top-4 w-28 h-28 text-teal/[0.08] group-hover:text-teal/[0.14] transition-colors duration-500" aria-hidden>
+                  <path d="M30 8L4 20l26 12 26-12L30 8z" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinejoin="round" />
+                  <path d="M14 27v12c0 4 7 9 16 9s16-5 16-9V27" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                  <path d="M52 22v14" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" />
+                </svg>
+                <p className="font-mono text-[10.5px] uppercase tracking-[0.2em] text-coral">Education · {e.period}</p>
+                <h3 className="mt-3 font-display font-bold text-2xl text-ink tracking-tight leading-tight">{e.degree}</h3>
+                <p className="mt-1.5 font-display font-semibold text-teal">{e.school}</p>
+                <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink/45 mt-0.5">{e.place}</p>
+                <ul className="mt-5 flex flex-wrap gap-2">
+                  {e.areas.map((a) => (
+                    <li key={a} className="rounded-full bg-mist border border-teal/15 px-3 py-1.5 text-[12px] font-medium text-ink/70 transition-colors hover:bg-teal hover:text-shell cursor-default">
+                      {a}
+                    </li>
+                  ))}
+                </ul>
+              </article>
             </Reveal>
           ))}
         </div>
@@ -93,115 +93,283 @@ export function FieldNotes() {
   );
 }
 
-export function Contact() {
-  const clock = useClock();
+/* ---------------- experience logbook ---------------- */
+export function Experience() {
   return (
-    <section id="contact" className="relative z-10 scroll-mt-24">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 pb-16">
-        <div className="relative overflow-hidden rounded-[36px] bg-deep px-7 sm:px-14 py-16 sm:py-24 shadow-[0_30px_90px_rgba(10,46,51,0.4)]">
-          {/* ambient rings */}
-          <div className="absolute -right-28 -top-28 w-[420px] h-[420px] rounded-full border border-aqua/15" aria-hidden />
-          <div className="absolute -right-10 -top-10 w-[280px] h-[280px] rounded-full border border-coral/20" aria-hidden />
-          <div className="absolute right-24 top-24 w-24 h-24 rounded-full border border-gold/25" aria-hidden />
-          <svg viewBox="0 0 400 60" className="absolute bottom-0 left-0 w-full h-16 text-teal/20" preserveAspectRatio="none" aria-hidden>
-            <path d="M0 35 C40 10 80 55 120 32 S200 12 240 34 320 52 360 28 400 20 400 20 V60 H0 Z" fill="currentColor" />
-          </svg>
+    <section id="experience" className="relative z-10 scroll-mt-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28">
+        <SectionHeading
+          kicker="the logbook · 04"
+          title={[
+            <span key="a">Where the work</span>,
+            <span key="b">
+              actually happened<span className="text-coral">.</span>
+            </span>,
+          ]}
+          note="Three postings: a venture studio in Rouen, an enterprise engine room in Hyderabad, and a remote internship that started it all."
+        />
 
-          <div className="relative grid lg:grid-cols-[1.3fr_1fr] gap-12 items-center">
-            <div>
-              <Reveal>
-                <p className="flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.24em] text-aqua">
-                  <IconSignal className="w-5 h-5 text-coral" />
-                  transmission · 06
-                </p>
-              </Reveal>
-              <h2 className="mt-5 font-display font-extrabold tracking-tight text-shell text-[clamp(2.6rem,6.5vw,5rem)] leading-[0.95]">
-                <Reveal>
-                  <span className="block">Let's make</span>
-                </Reveal>
-                <Reveal delay={130}>
-                  <span className="block text-coral">
-                    waves<span className="text-gold">.</span>
-                  </span>
-                </Reveal>
-              </h2>
-              <Reveal delay={220}>
-                <p className="mt-6 max-w-lg text-seafoam/80 text-lg leading-relaxed">
-                  Booking one deep-dive project and two dashboard rescues for{" "}
-                  <span className="text-gold font-medium">Q3 2026</span>. Bring a messy question — I'll bring the
-                  compass, the SQL, and an unreasonable amount of enthusiasm.
-                </p>
-              </Reveal>
-              <Reveal delay={320}>
-                <div className="mt-9 flex flex-wrap items-center gap-4">
-                  <a
-                    href="mailto:hello@marinavela.data"
-                    className="btn-wave inline-flex items-center gap-3 rounded-full bg-shell px-8 py-4 font-display font-bold text-deep text-lg transition-colors"
-                  >
-                    hello@marinavela.data
-                    <svg viewBox="0 0 20 20" className="w-4 h-4" aria-hidden>
-                      <path d="M4.5 15.5l11-11M7 4.5h8.5V13" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+        <div className="space-y-7">
+          {EXPERIENCE.map((x, i) => (
+            <Reveal key={x.org} delay={i * 100}>
+              <article className="group relative overflow-hidden rounded-[26px] border border-ink/10 bg-shell/88 backdrop-blur-md transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_26px_64px_rgba(13,59,64,0.16)]">
+                <div className="grid lg:grid-cols-[340px_1fr]">
+                  {/* rail */}
+                  <div className="relative p-7 sm:p-8 bg-gradient-to-br from-ink to-deep text-mist flex flex-col justify-between overflow-hidden">
+                    <svg viewBox="0 0 200 60" className="absolute bottom-0 left-0 w-full h-14 text-mist/[0.06]" preserveAspectRatio="none" aria-hidden>
+                      <path d="M0 40c20-14 34-14 50 0s30 14 50 0 34-14 50 0 30 14 50 0v20H0z" fill="currentColor" />
                     </svg>
-                  </a>
-                  <div className="flex gap-2.5">
-                    {["LinkedIn", "Dribbble", "GitHub"].map((s) => (
-                      <a
-                        key={s}
-                        href="#contact"
-                        aria-label={s}
-                        className="flex h-12 w-12 items-center justify-center rounded-full border border-seafoam/25 text-seafoam/80 transition-all duration-300 hover:border-coral hover:text-coral hover:-translate-y-1"
-                      >
-                        {s === "LinkedIn" && (
-                          <svg viewBox="0 0 20 20" className="w-4.5 h-4.5" fill="currentColor" aria-hidden>
-                            <path d="M4.6 6.6H1.9V18h2.7V6.6zM3.2 5.4a1.6 1.6 0 1 0 0-3.2 1.6 1.6 0 0 0 0 3.2zM18 11.4c0-3-1.6-4.9-4.2-4.9-1.5 0-2.4.8-2.9 1.6V6.6H8.2V18h2.7v-6c0-1.6.7-2.6 2.1-2.6s1.9 1 1.9 2.7V18H18v-6.6z" />
+                    <div className="relative">
+                      <p className="font-mono text-[10.5px] uppercase tracking-[0.24em] text-coral">Entry 0{i + 1}</p>
+                      <h3 className="mt-3 font-display font-bold text-[26px] sm:text-3xl leading-tight tracking-tight">{x.org}</h3>
+                      <p className="mt-2 text-[14px] leading-snug text-seafoam/90">{x.role}</p>
+                    </div>
+                    <div className="relative mt-6 flex flex-wrap gap-x-5 gap-y-1.5 font-mono text-[11px] uppercase tracking-[0.14em] text-seafoam/70">
+                      <span>{x.place}</span>
+                      <span className="text-coral">{x.period}</span>
+                    </div>
+                  </div>
+                  {/* record */}
+                  <div className="p-7 sm:p-8">
+                    <ul className="grid md:grid-cols-2 gap-x-8 gap-y-3">
+                      {x.bullets.map((b, k) => (
+                        <li key={k} className="flex gap-3 text-[13.5px] leading-relaxed text-ink/75">
+                          <svg viewBox="0 0 26 12" className="mt-[7px] w-6 h-3 shrink-0 text-coral" aria-hidden>
+                            <path d="M1 8c3-4.6 5-4.6 7.6 0s4.6 4.6 7.2 0 4.4-4.2 6.8-1" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
                           </svg>
-                        )}
-                        {s === "Dribbble" && (
-                          <svg viewBox="0 0 20 20" className="w-4.5 h-4.5" aria-hidden>
-                            <circle cx="10" cy="10" r="8.2" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                            <path d="M3 7.5c4.5.8 9 .4 12.8-2.6M17.4 12.7c-3.6-1.3-8-.7-11.6 3.4M8.3 2.2c2.8 3.3 4.4 7.2 4.9 13.4" fill="none" stroke="currentColor" strokeWidth="1.5" />
-                          </svg>
-                        )}
-                        {s === "GitHub" && (
-                          <svg viewBox="0 0 20 20" className="w-4.5 h-4.5" fill="currentColor" aria-hidden>
-                            <path d="M10 1.5a8.5 8.5 0 0 0-2.7 16.6c.4.1.6-.2.6-.4v-1.5c-2.4.5-2.9-1-2.9-1-.4-1-1-1.3-1-1.3-.8-.5.1-.5.1-.5.9.1 1.3.9 1.3.9.8 1.3 2 1 2.5.7.1-.6.3-1 .5-1.2-1.9-.2-3.9-1-3.9-4.2 0-.9.3-1.7.9-2.3-.1-.2-.4-1.1.1-2.2 0 0 .7-.2 2.3.9a8 8 0 0 1 4.2 0c1.6-1.1 2.3-.9 2.3-.9.5 1.1.2 2 .1 2.2.6.6.9 1.4.9 2.3 0 3.3-2 4-3.9 4.2.3.3.6.8.6 1.6v2.3c0 .2.2.5.6.4A8.5 8.5 0 0 0 10 1.5z" />
-                          </svg>
-                        )}
-                      </a>
-                    ))}
+                          {b}
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-6 pt-5 border-t border-ink/10 flex flex-wrap gap-2">
+                      {x.focus.map((f) => (
+                        <span key={f} className="rounded-full bg-mist px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.1em] text-teal transition-colors hover:bg-coral hover:text-shell cursor-default">
+                          {f}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </Reveal>
-            </div>
-
-            {/* tide table + clock */}
-            <Reveal delay={260} variant="pop">
-              <div className="rounded-3xl border border-seafoam/15 bg-abyss/60 p-7 sm:p-8">
-                <div className="flex items-baseline justify-between">
-                  <span className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-seafoam/60">Lisbon station</span>
-                  <span className="font-mono text-2xl text-gold tabular-nums">{clock}</span>
-                </div>
-                <div className="tide-rule my-5 text-seafoam/40" />
-                <dl className="space-y-3.5 font-mono text-[12.5px]">
-                  {[
-                    ["high tide", "07:42 · 3.6 m", "text-aqua"],
-                    ["low tide", "13:58 · 0.8 m", "text-coral"],
-                    ["high tide", "20:15 · 3.4 m", "text-aqua"],
-                    ["moon", "waxing gibbous", "text-gold"],
-                    ["swell", "1.2 m @ 9 s", "text-seafoam/80"],
-                  ].map(([k, v, tone]) => (
-                    <div key={k} className="flex items-baseline justify-between gap-4 group">
-                      <dt className="uppercase tracking-[0.16em] text-[10.5px] text-seafoam/50">{k}</dt>
-                      <dd className={`${tone} transition-transform duration-300 group-hover:translate-x-1`}>{v}</dd>
-                    </div>
-                  ))}
-                </dl>
-                <div className="tide-rule my-5 text-seafoam/40" />
-                <p className="font-mono text-[10.5px] uppercase tracking-[0.16em] text-seafoam/45 leading-relaxed">
-                  replies arrive with the next tide — usually faster
-                </p>
-              </div>
+              </article>
             </Reveal>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- philosophy quote band ---------------- */
+export function QuoteBand() {
+  return (
+    <section className="relative z-10 py-20 sm:py-28">
+      <div className="mx-auto max-w-4xl px-6 text-center">
+        <Reveal>
+          <p className="font-mono text-[11px] uppercase tracking-[0.3em] text-teal">Personal philosophy</p>
+        </Reveal>
+        <Reveal delay={120}>
+          <blockquote className="mt-7 font-display font-extrabold tracking-tight leading-[1.05] text-[clamp(2rem,6vw,4.4rem)] text-ink">
+            “Technology gives curiosity{" "}
+            <span className="relative inline-block text-coral">
+              somewhere to go.
+              <svg viewBox="0 0 220 14" className="absolute -bottom-2 left-0 w-full h-3 text-gold/70" preserveAspectRatio="none" aria-hidden>
+                <path d="M3 10c30-7 60-7 90-2s60 6 90-2 30-5 34-3" fill="none" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+              </svg>
+            </span>
+            ”
+          </blockquote>
+        </Reveal>
+        <Reveal delay={260}>
+          <div className="mt-9 flex flex-wrap items-center justify-center gap-3 font-mono text-[11px] uppercase tracking-[0.2em] text-ink/60">
+            {["Curiosity", "Build", "Learn", "Improve"].map((s, i) => (
+              <span key={s} className="flex items-center gap-3">
+                {i > 0 && <span className="text-coral">→</span>}
+                <span className="rounded-full border border-ink/15 bg-shell/70 px-4 py-2 hover:border-coral hover:text-coral transition-colors cursor-default">
+                  {s}
+                </span>
+              </span>
+            ))}
+          </div>
+        </Reveal>
+        <Reveal delay={380}>
+          <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-relaxed text-ink/65">
+            I rarely want to learn something purely theoretically. If I want to understand a technology, I prefer to
+            build something with it. I enjoy breaking complicated problems into smaller pieces, finding efficient ways
+            to handle repetitive work, and turning an idea into something tangible.
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- the next chapter ---------------- */
+export function NextChapter() {
+  return (
+    <section id="next" className="relative z-10 scroll-mt-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-24">
+        <SectionHeading
+          kicker="the next chapter · 07"
+          title={[
+            <span key="a">I have been moving from</span>,
+            <span key="b">
+              systems toward <span className="text-coral">possibilities</span>.
+            </span>,
+          ]}
+          note="Not looking for a title — looking for an environment where data, technology, business thinking and AI solve meaningful problems."
+        />
+
+        <div className="grid lg:grid-cols-3 gap-6">
+          <Reveal variant="pop">
+            <div className="h-full rounded-[24px] border border-ink/10 bg-shell/88 backdrop-blur-md p-7 sm:p-8">
+              <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Target roles</p>
+              <ul className="mt-5 flex flex-wrap gap-2.5">
+                {TARGET_ROLES.map((r) => (
+                  <li key={r} className="rounded-full bg-mist border border-teal/20 px-4 py-2 font-display font-semibold text-[14px] text-ink transition-all duration-300 hover:bg-teal hover:text-shell hover:-translate-y-0.5 cursor-default">
+                    {r}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal variant="pop" delay={120}>
+            <div className="h-full rounded-[24px] border border-ink/10 bg-shell/88 backdrop-blur-md p-7 sm:p-8">
+              <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Working model</p>
+              <ul className="mt-5 space-y-3">
+                {WORK_MODELS.map((m) => (
+                  <li key={m} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-5 py-3.5 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
+                    <span className="font-display font-bold text-lg text-ink">{m}</span>
+                    <svg viewBox="0 0 26 12" className="w-6 h-3 text-teal" aria-hidden>
+                      <path d="M1 8c3-4.6 5-4.6 7.6 0s4.6 4.6 7.2 0 4.4-4.2 6.8-1" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                    </svg>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </Reveal>
+          <Reveal variant="pop" delay={240}>
+            <div className="h-full rounded-[24px] border border-ink/10 bg-shell/88 backdrop-blur-md p-7 sm:p-8">
+              <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Location</p>
+              <ul className="mt-5 space-y-3">
+                {LOCATIONS.map((l) => (
+                  <li key={l} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-5 py-3.5 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
+                    <span className="font-display font-bold text-lg text-ink">{l}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-teal">open</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-5 text-[13px] leading-relaxed text-ink/60">
+                Moving from India to France and back has made me comfortable adapting to new environments and working
+                across cultures. <span className="font-semibold text-coral">Open to relocation.</span>
+              </p>
+            </div>
+          </Reveal>
+        </div>
+
+        <Reveal delay={200}>
+          <p className="mt-12 text-center font-mono text-[11px] uppercase tracking-[0.24em] text-ink/50">
+            Perhaps deeper into analytics engineering · perhaps further into AI · perhaps another country —{" "}
+            <span className="text-coral">the next chapter is still being written</span>
+          </p>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
+
+/* ---------------- contact ---------------- */
+export function Contact() {
+  return (
+    <section id="contact" className="relative z-10 scroll-mt-24">
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-20 sm:py-28">
+        <SectionHeading
+          kicker="final scene · 08"
+          title={[
+            <span key="a">Let&rsquo;s build something</span>,
+            <span key="b">
+              useful<span className="text-coral">.</span>
+            </span>,
+          ]}
+          note="Hiring for a data, analytics, BI, product analytics or AI-focused role? I would be interested in connecting."
+        />
+
+        <div className="grid lg:grid-cols-2 gap-8 items-start">
+          <Reveal variant="pop">
+            <div className="relative overflow-hidden rounded-[28px] bg-gradient-to-br from-teal to-deep p-9 sm:p-12 text-mist shadow-[0_30px_80px_rgba(10,46,51,0.35)]">
+              <svg viewBox="0 0 400 120" className="absolute inset-x-0 bottom-0 w-full h-24 text-mist/[0.07]" preserveAspectRatio="none" aria-hidden>
+                <path d="M0 70c40-30 70-30 100 0s60 30 100 0 70-30 100 0 60 30 100 0v50H0z" fill="currentColor" />
+              </svg>
+              <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-seafoam/80">Availability</p>
+              <h3 className="mt-4 font-display font-bold text-3xl sm:text-4xl leading-tight tracking-tight">
+                Open to relocation.
+                <br />
+                Remote · Hybrid · <span className="text-gold">International.</span>
+              </h3>
+              <p className="mt-5 max-w-md text-[15px] leading-relaxed text-seafoam/85">
+                I am looking for opportunities where I can keep learning, solve meaningful problems, and turn data and
+                technology into practical business outcomes — in India, Europe, or anywhere the work is good.
+              </p>
+              <div className="mt-8 flex flex-wrap gap-2.5">
+                {["Data", "Business", "Technology", "AI", "Automation"].map((t) => (
+                  <span key={t} className="rounded-full border border-seafoam/30 px-4 py-1.5 font-mono text-[10.5px] uppercase tracking-[0.16em] text-seafoam/90">
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </Reveal>
+
+          <div className="space-y-4">
+            {[
+              {
+                label: "Email",
+                value: CONTACT.email,
+                href: `mailto:${CONTACT.email}`,
+                hint: "fastest signal",
+              },
+              {
+                label: "LinkedIn",
+                value: "in/kousthubheekrishna",
+                href: CONTACT.linkedin,
+                hint: "the professional cut",
+              },
+              {
+                label: "GitHub",
+                value: "Kousthubhee / Projects",
+                href: CONTACT.github,
+                hint: "the raw footage",
+              },
+              {
+                label: "WhatsApp",
+                value: CONTACT.whatsappDisplay,
+                href: CONTACT.whatsappUrl,
+                hint: "+91 · direct line",
+              },
+            ].map((c, i) => (
+              <Reveal key={c.label} delay={i * 100}>
+                <a
+                  href={c.href}
+                  target={c.href.startsWith("http") ? "_blank" : undefined}
+                  rel={c.href.startsWith("http") ? "noreferrer" : undefined}
+                  className="group flex items-center justify-between gap-4 rounded-2xl border border-ink/10 bg-shell/88 backdrop-blur-md px-6 py-5 transition-all duration-300 hover:-translate-y-1 hover:border-coral/60 hover:shadow-[0_16px_40px_rgba(255,122,104,0.16)]"
+                >
+                  <div className="flex items-center gap-4 min-w-0">
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-xl bg-mist text-teal border border-teal/20 transition-colors duration-300 group-hover:bg-coral group-hover:text-shell group-hover:border-coral">
+                      <IconSignal className="w-5 h-5" />
+                    </span>
+                    <div className="min-w-0">
+                      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-ink/45">
+                        {c.label} · {c.hint}
+                      </p>
+                      <p className="mt-0.5 font-display font-bold text-lg text-ink truncate">{c.value}</p>
+                    </div>
+                  </div>
+                  <svg viewBox="0 0 20 20" className="w-5 h-5 shrink-0 text-ink/35 transition-all duration-300 group-hover:text-coral group-hover:translate-x-1 group-hover:-translate-y-1" aria-hidden>
+                    <path d="M4.5 15.5l11-11M7 4.5h8.5V13" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </a>
+              </Reveal>
+            ))}
           </div>
         </div>
       </div>
@@ -209,29 +377,46 @@ export function Contact() {
   );
 }
 
+/* ---------------- footer / end credits ---------------- */
 export function Footer() {
   return (
-    <footer className="relative z-10 border-t border-ink/10 bg-shell/80 backdrop-blur-sm">
-      <div className="mx-auto max-w-7xl px-5 sm:px-8 py-8 flex flex-wrap items-center justify-between gap-5">
-        <div className="flex items-center gap-2.5 text-ink/70">
-          <IconWaveMark className="w-7 h-7 text-teal" />
-          <p className="font-mono text-[11px] uppercase tracking-[0.16em]">
-            © 2026 marina vela — built with salt & SQL
+    <footer className="relative z-10 mt-6">
+      <div className="film-strip h-7" aria-hidden />
+      <div className="bg-abyss text-mist">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 sm:py-16">
+          <div className="text-center font-mono text-[10.5px] uppercase tracking-[0.3em] text-mist/45">
+            — end credits —
+          </div>
+          <h2 className="mt-6 text-center font-display font-extrabold tracking-tight text-[clamp(1.8rem,5vw,3.4rem)] leading-tight">
+            Kousthubhee Krishna Kotte
+            <span className="text-coral">.</span>
+          </h2>
+          <p className="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.22em] text-seafoam/70">
+            Data &amp; BI Analyst · Business Analytics · AI &amp; Automation
           </p>
-        </div>
-        <div className="flex items-center gap-6">
-          <p className="hidden sm:block font-mono text-[10.5px] uppercase tracking-[0.16em] text-ink/40">
-            38.72° N · data never sleeps, analysts occasionally do
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-mist/50">
+            <span>starring — Python, SQL, Tableau</span>
+            <span>directed by — curiosity</span>
+            <span>produced by — persistence</span>
+            <span>location — HYD → ROUEN → HYD</span>
+          </div>
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
+            <a href={`mailto:${CONTACT.email}`} className="font-mono text-[11px] uppercase tracking-[0.16em] text-seafoam/80 hover:text-coral transition-colors">
+              {CONTACT.email}
+            </a>
+            <a href={CONTACT.linkedin} target="_blank" rel="noreferrer" className="font-mono text-[11px] uppercase tracking-[0.16em] text-seafoam/80 hover:text-coral transition-colors">
+              LinkedIn
+            </a>
+            <a href={CONTACT.github} target="_blank" rel="noreferrer" className="font-mono text-[11px] uppercase tracking-[0.16em] text-seafoam/80 hover:text-coral transition-colors">
+              GitHub
+            </a>
+            <a href={CONTACT.whatsappUrl} target="_blank" rel="noreferrer" className="font-mono text-[11px] uppercase tracking-[0.16em] text-seafoam/80 hover:text-coral transition-colors">
+              WhatsApp
+            </a>
+          </div>
+          <p className="mt-10 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-mist/35">
+            © 2026 · India → France → India → looking forward to the next adventure
           </p>
-          <a
-            href="#top"
-            aria-label="Back to surface"
-            className="group flex h-11 w-11 items-center justify-center rounded-full border border-teal/30 text-teal transition-all duration-300 hover:bg-teal hover:text-shell hover:-translate-y-1"
-          >
-            <svg viewBox="0 0 20 20" className="w-4 h-4 transition-transform duration-300 group-hover:-translate-y-0.5" aria-hidden>
-              <path d="M10 16V4M4.5 9.5L10 4l5.5 5.5" fill="none" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </a>
         </div>
       </div>
     </footer>

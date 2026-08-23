@@ -124,20 +124,56 @@ export const IconSignal = ({ className = "w-5 h-5" }: { className?: string }) =>
   </svg>
 );
 
+export const IconCloud = ({ className = "w-7 h-7" }: { className?: string }) => (
+  <svg viewBox="0 0 32 32" className={className} aria-hidden>
+    <path d="M9 22a5.5 5.5 0 0 1-.6-10.97A7 7 0 0 1 22 9.5 5.75 5.75 0 0 1 23 21v1H9z" {...stroke} />
+    <path d="M11 26.5h10M14 30h4" {...stroke} opacity="0.55" />
+  </svg>
+);
+
+export const IconChart = ({ className = "w-7 h-7" }: { className?: string }) => (
+  <svg viewBox="0 0 32 32" className={className} aria-hidden>
+    <path d="M5 5v22h22" {...stroke} />
+    <path d="M10 21l5-6 4 3 6-8" {...stroke} />
+    <circle cx="25" cy="10" r="1.6" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+export const IconSpark = ({ className = "w-7 h-7" }: { className?: string }) => (
+  <svg viewBox="0 0 32 32" className={className} aria-hidden>
+    <path d="M16 4l2.6 7.6L26 14l-7.4 2.4L16 24l-2.6-7.6L6 14l7.4-2.4z" {...stroke} />
+    <path d="M25 22l1.1 3 3 1.1-3 1.1L25 30l-1.1-2.8-3-1.1 3-1.1z" {...stroke} opacity="0.7" />
+  </svg>
+);
+
+export const IconBranch = ({ className = "w-7 h-7" }: { className?: string }) => (
+  <svg viewBox="0 0 32 32" className={className} aria-hidden>
+    <circle cx="9" cy="7" r="3" {...stroke} />
+    <circle cx="9" cy="25" r="3" {...stroke} />
+    <circle cx="23" cy="9" r="3" {...stroke} />
+    <path d="M9 10v12" {...stroke} />
+    <path d="M23 12c0 5-6 5-10.5 7.5" {...stroke} />
+  </svg>
+);
+
 export const SKILL_ICONS = {
   current: IconCurrent,
   compass: IconCompass,
   anchor: IconAnchor,
   sextant: IconSextant,
+  cloud: IconCloud,
+  chart: IconChart,
+  spark: IconSpark,
+  branch: IconBranch,
 };
 
 /* ============ Nav ============ */
 const NAV_LINKS = [
-  { href: "#about", label: "About" },
-  { href: "#currents", label: "Currents" },
-  { href: "#expeditions", label: "Expeditions" },
-  { href: "#process", label: "Method" },
-  { href: "#notes", label: "Field Notes" },
+  { href: "#about", label: "Journey" },
+  { href: "#experience", label: "Experience" },
+  { href: "#projects", label: "Projects" },
+  { href: "#skills", label: "Skills" },
+  { href: "#next", label: "What’s Next" },
 ];
 
 export function Nav() {
@@ -160,8 +196,8 @@ export function Nav() {
             <IconWaveMark className="w-9 h-9" />
           </span>
           <span className="font-display font-bold text-lg tracking-tight leading-none">
-            marina
-            <span className="text-coral">.</span>vela
+            kousthubhee
+            <span className="text-coral">.</span>k
           </span>
         </a>
         <nav className="hidden md:flex items-center gap-7">
@@ -181,7 +217,7 @@ export function Nav() {
           className="flex items-center gap-2 rounded-full border border-teal/30 bg-shell/70 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.12em] text-teal hover:border-coral hover:text-coral transition-colors"
         >
           <span className="w-2 h-2 rounded-full bg-aqua pulse-dot" />
-          open for Q3
+          open to relocation
         </a>
       </div>
     </header>

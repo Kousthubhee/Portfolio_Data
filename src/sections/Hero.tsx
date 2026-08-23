@@ -12,7 +12,7 @@ export default function Hero() {
       {/* opening credits */}
       <div className="relative z-10 pt-28 sm:pt-36 text-center font-mono uppercase tracking-[0.34em] text-ink/70 text-[10.5px] sm:text-xs">
         <Reveal>
-          <p className="anim-fade-up">Kousthubhee Krishna Kotte presents</p>
+          <p className="anim-fade-up">Kousthubhee Krishna Kotte</p>
         </Reveal>
       </div>
 

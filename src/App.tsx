@@ -1,5 +1,6 @@
 import OceanScene from "./components/OceanScene";
 import { Nav, NoiseOverlay, SkillMarquee } from "./components/Chrome";
+import { CinemaChrome, FilmFlicker, SceneStamp, Sprockets, Vignette } from "./components/Cinematic";
 import Hero from "./sections/Hero";
 import { About, Skills } from "./sections/About";
 import { Expeditions, NumbersBand } from "./sections/Projects";
@@ -10,16 +11,21 @@ export default function App() {
   const reduced = usePrefersReducedMotion();
   return (
     <div className="relative min-h-screen font-body text-ink antialiased">
-      {/* cinematic warm ocean — fixed behind everything */}
+      {/* the picture: warm sunlit ocean, crane shot + scroll choreography */}
       <OceanScene reduced={reduced} />
 
       {/* depth veil: sea stays vivid up top, content gets readable below */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-[88vh] bottom-0 z-[1] bg-gradient-to-b from-transparent via-mist/75 to-mist/95"
+        className="pointer-events-none absolute inset-x-0 top-[94vh] bottom-0 z-[1] bg-gradient-to-b from-transparent via-mist/72 to-mist/95"
         aria-hidden
       />
 
+      {/* cinema chrome */}
+      <FilmFlicker />
+      <Vignette />
       <NoiseOverlay />
+      <CinemaChrome />
+      <SceneStamp />
       <Nav />
 
       <main className="relative z-10">
@@ -34,6 +40,7 @@ export default function App() {
         <Contact />
       </main>
 
+      <Sprockets />
       <Footer />
     </div>
   );

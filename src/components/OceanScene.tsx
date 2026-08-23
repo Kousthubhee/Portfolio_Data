@@ -7,13 +7,15 @@ varying float vElev;
 varying float vDist;
 varying vec3 vNormal;
 varying vec3 vViewDir;
+varying vec3 vWorld;
 
 float waveH(vec2 p) {
   float t = uTime;
   float e = 0.0;
+  e += sin(p.x * 0.045 - t * 0.21) * 1.55;              // long ground swell
   e += sin(p.x * 0.11 + t * 0.55) * 1.05;
   e += sin(p.y * 0.14 - t * 0.42) * 0.85;
-  e += sin((p.x + p.y) * 0.06 + t * 0.28) * 1.35;
+  e += sin((p.x + p.y) * 0.06 + t * 0.28) * 1.45;
   e += sin(p.x * 0.21 - p.y * 0.16 + t * 0.8) * 0.42;
   e += sin(p.y * 0.31 + p.x * 0.05 - t * 1.1) * 0.22;
   return e;
@@ -30,7 +32,9 @@ void main() {
   pos.y += h;
   vElev = h;
   vNormal = normalize(normalMatrix * n);
-  vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+  vec4 w = modelMatrix * vec4(pos, 1.0);
+  vWorld = w.xyz;
+  vec4 mv = viewMatrix * w;
   vDist = -mv.z;
   vViewDir = normalize(-mv.xyz);
   gl_Position = projectionMatrix * mv;
@@ -44,29 +48,38 @@ uniform vec3 uFoam;
 uniform vec3 uFog;
 uniform vec3 uSunTint;
 uniform vec3 uSunDir;
+uniform float uTime;
 varying float vElev;
 varying float vDist;
 varying vec3 vNormal;
 varying vec3 vViewDir;
+varying vec3 vWorld;
 
 void main() {
   vec3 N = normalize(vNormal);
   vec3 V = normalize(vViewDir);
-  float up = smoothstep(-2.4, 2.2, vElev);
+  float up = smoothstep(-2.6, 2.4, vElev);
   vec3 col = mix(uDeep, uShallow, up);
 
-  // warm sun glitter
+  // warm sun glitter (specular)
   vec3 L = normalize(uSunDir);
   vec3 R = reflect(-V, N);
   float spec = pow(max(dot(R, L), 0.0), 46.0);
   col += uSunTint * spec * 0.9;
 
-  // soft fresnel lightening toward horizon
+  // sun-path shimmer column on the water toward the sun
+  float dev = vWorld.x + 0.0833 * vWorld.z;
+  float band = exp(-dev * dev / 46.0);
+  float farFade = smoothstep(2.0, 70.0, -vWorld.z);
+  float sparkle = 0.55 + 0.45 * sin(vWorld.x * 2.9 + uTime * 2.3) * sin(vWorld.z * 2.3 - uTime * 1.7);
+  col += uSunTint * band * farFade * sparkle * 0.6;
+
+  // fresnel lightening toward horizon
   float fres = pow(1.0 - max(dot(N, V), 0.0), 2.4);
   col = mix(col, uFog, fres * 0.35);
 
   // foam on crests
-  float foam = smoothstep(1.25, 2.1, vElev);
+  float foam = smoothstep(1.55, 2.5, vElev);
   col = mix(col, uFoam, foam * 0.85);
 
   // distance fog into warm haze
@@ -97,9 +110,8 @@ void main() {
   float h = clamp(d.y * 0.5 + 0.5, 0.0, 1.0);
   vec3 col = mix(uHorizon, uMid, smoothstep(0.42, 0.62, h));
   col = mix(col, uTop, smoothstep(0.6, 0.95, h));
-  // warm bloom around the sun
   float sun = pow(max(dot(d, normalize(uSunDir)), 0.0), 6.0);
-  col += uWarm * sun * 0.55;
+  col += uWarm * sun * 0.6;
   gl_FragColor = vec4(col, 1.0);
 }
 `;
@@ -144,17 +156,18 @@ function buildScene(mount: HTMLElement, reduced: boolean): SceneHandles | null {
   mount.appendChild(renderer.domElement);
 
   const scene = new THREE.Scene();
-  scene.fog = new THREE.Fog(0xd8ece4, 60, 160);
+  scene.fog = new THREE.Fog(0xdcece2, 60, 165);
 
-  const camera = new THREE.PerspectiveCamera(52, W() / H(), 0.1, 400);
+  const camera = new THREE.PerspectiveCamera(58, W() / H(), 0.1, 500);
+  const CAM_START = new THREE.Vector3(30, 17, 50); // opening crane position
   const CAM_BASE = new THREE.Vector3(0, 3.6, 15.5);
-  camera.position.copy(CAM_BASE);
-  camera.lookAt(0, 1.6, -8);
+  camera.position.copy(CAM_START);
+  camera.lookAt(0, 2, -10);
 
   const sunDir = new THREE.Vector3(0.08, 0.16, -1).normalize();
 
   // ---- sky dome ----
-  const skyGeo = new THREE.SphereGeometry(180, 32, 20);
+  const skyGeo = new THREE.SphereGeometry(220, 32, 20);
   const skyMat = new THREE.ShaderMaterial({
     vertexShader: SKY_VERT,
     fragmentShader: SKY_FRAG,
@@ -164,37 +177,68 @@ function buildScene(mount: HTMLElement, reduced: boolean): SceneHandles | null {
       uTop: { value: new THREE.Color("#8fd0c6") },
       uMid: { value: new THREE.Color("#dff0e4") },
       uHorizon: { value: new THREE.Color("#ffd9b0") },
-      uWarm: { value: new THREE.Color("#ffbf8e") },
+      uWarm: { value: new THREE.Color("#ffc193") },
       uSunDir: { value: sunDir.clone() },
     },
   });
-  const sky = new THREE.Mesh(skyGeo, skyMat);
-  scene.add(sky);
+  scene.add(new THREE.Mesh(skyGeo, skyMat));
 
-  // ---- sun + glow ----
-  const sunGroup = new THREE.Group();
+  // ---- sun + layered glow ----
   const sunGeo = new THREE.CircleGeometry(8.5, 48);
   const sunMat = new THREE.MeshBasicMaterial({ color: "#ffe3b0", fog: false });
   const sun = new THREE.Mesh(sunGeo, sunMat);
-  sun.position.set(10, 9.5, -120);
+  sun.position.set(12, 10.5, -140);
   sun.lookAt(camera.position);
+  scene.add(sun);
+
   const glowTex = makeGlowTexture();
-  const glowMat = new THREE.SpriteMaterial({
-    map: glowTex,
-    blending: THREE.AdditiveBlending,
-    depthWrite: false,
-    transparent: true,
-    opacity: 0.9,
-    fog: false,
+  const mkGlow = (scale: number, opacity: number) => {
+    const m = new THREE.SpriteMaterial({
+      map: glowTex,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      transparent: true,
+      opacity,
+      fog: false,
+    });
+    const s = new THREE.Sprite(m);
+    s.scale.set(scale, scale, 1);
+    s.position.copy(sun.position);
+    scene.add(s);
+    return s;
+  };
+  const glowInner = mkGlow(70, 0.95);
+  const glowOuter = mkGlow(150, 0.4);
+
+  // ---- drifting clouds ----
+  const clouds: { s: THREE.Sprite; speed: number }[] = [];
+  const cloudDefs: [number, number, number, number, number][] = [
+    [-70, 30, -110, 90, 0.16],
+    [-18, 38, -150, 120, 0.13],
+    [38, 27, -95, 70, 0.18],
+    [85, 34, -130, 100, 0.12],
+    [-105, 26, -80, 60, 0.17],
+    [12, 44, -170, 150, 0.1],
+    [62, 40, -160, 110, 0.11],
+  ];
+  cloudDefs.forEach(([x, y, z, sc, op]) => {
+    const mat = new THREE.SpriteMaterial({
+      map: glowTex,
+      color: "#fff6ea",
+      transparent: true,
+      opacity: op,
+      depthWrite: false,
+      fog: true,
+    });
+    const s = new THREE.Sprite(mat);
+    s.position.set(x, y, z);
+    s.scale.set(sc * 2.1, sc * 0.62, 1);
+    scene.add(s);
+    clouds.push({ s, speed: 0.25 + Math.random() * 0.55 });
   });
-  const glow = new THREE.Sprite(glowMat);
-  glow.scale.set(64, 64, 1);
-  glow.position.copy(sun.position);
-  sunGroup.add(sun, glow);
-  scene.add(sunGroup);
 
   // ---- ocean ----
-  const oceanGeo = new THREE.PlaneGeometry(340, 340, 150, 150);
+  const oceanGeo = new THREE.PlaneGeometry(360, 360, 150, 150);
   oceanGeo.rotateX(-Math.PI / 2);
   const oceanMat = new THREE.ShaderMaterial({
     vertexShader: WAVE_VERT,
@@ -204,16 +248,14 @@ function buildScene(mount: HTMLElement, reduced: boolean): SceneHandles | null {
       uDeep: { value: new THREE.Color("#0b6b70") },
       uShallow: { value: new THREE.Color("#52c6b4") },
       uFoam: { value: new THREE.Color("#fff3e0") },
-      uFog: { value: new THREE.Color("#d8ece4") },
+      uFog: { value: new THREE.Color("#dcece2") },
       uSunTint: { value: new THREE.Color("#ffd9a0") },
       uSunDir: { value: sunDir.clone() },
     },
   });
-  const ocean = new THREE.Mesh(oceanGeo, oceanMat);
-  scene.add(ocean);
+  scene.add(new THREE.Mesh(oceanGeo, oceanMat));
 
   // ---- glacier data shards ----
-  const shardGroup = new THREE.Group();
   const shardMat = (color: string, emissive: string) =>
     new THREE.MeshStandardMaterial({
       color,
@@ -238,12 +280,11 @@ function buildScene(mount: HTMLElement, reduced: boolean): SceneHandles | null {
     const mesh = new THREE.Mesh(geo, shardMat(c, e));
     mesh.position.set(x, y, z);
     mesh.rotation.set(Math.random() * 2, Math.random() * 2, Math.random());
-    shardGroup.add(mesh);
+    scene.add(mesh);
     shards.push({ mesh, baseY: y, phase: Math.random() * Math.PI * 2, spin: 0.12 + Math.random() * 0.2 });
   });
-  scene.add(shardGroup);
 
-  // ---- plankton / light motes ----
+  // ---- plankton motes ----
   const COUNT = 280;
   const positions = new Float32Array(COUNT * 3);
   const speeds = new Float32Array(COUNT);
@@ -264,8 +305,7 @@ function buildScene(mount: HTMLElement, reduced: boolean): SceneHandles | null {
     blending: THREE.AdditiveBlending,
     sizeAttenuation: true,
   });
-  const motes = new THREE.Points(moteGeo, moteMat);
-  scene.add(motes);
+  scene.add(new THREE.Points(moteGeo, moteMat));
 
   // ---- lights ----
   scene.add(new THREE.HemisphereLight("#fff1dc", "#0b6b70", 1.05));
@@ -296,6 +336,7 @@ function buildScene(mount: HTMLElement, reduced: boolean): SceneHandles | null {
   onScroll();
 
   const clock = new THREE.Clock();
+  const INTRO = 5.8; // seconds for the opening crane shot
   let raf = 0;
   let disposed = false;
 
@@ -308,18 +349,42 @@ function buildScene(mount: HTMLElement, reduced: boolean): SceneHandles | null {
     mouse.x += (mouse.tx - mouse.x) * 0.045;
     mouse.y += (mouse.ty - mouse.y) * 0.045;
 
-    // cinematic scroll ascent: sea level → gull's-eye view
+    // opening crane: sweep in from far/high, then hand over to scroll choreography
+    const k = reduced ? 1 : 1 - Math.pow(1 - Math.min(1, t / INTRO), 4);
+
     const rise = scrollP * 11;
-    camera.position.x = CAM_BASE.x + mouse.x * 1.5;
-    camera.position.y = CAM_BASE.y + rise - mouse.y * 0.7 + Math.sin(t * 0.5) * 0.18;
-    camera.position.z = CAM_BASE.z - scrollP * 4;
-    camera.lookAt(0, 1.6 + rise * 0.55, -8 - scrollP * 10);
+    const breatheY = Math.sin(t * 0.42) * 0.22 + Math.sin(t * 0.13) * 0.1;
+    const breatheX = Math.sin(t * 0.31) * 0.18;
+
+    const targetX = CAM_BASE.x + mouse.x * 1.5 + breatheX;
+    const targetY = CAM_BASE.y + rise - mouse.y * 0.7 + breatheY;
+    const targetZ = CAM_BASE.z - scrollP * 4;
+
+    camera.position.set(
+      CAM_START.x + (targetX - CAM_START.x) * k,
+      CAM_START.y + (targetY - CAM_START.y) * k,
+      CAM_START.z + (targetZ - CAM_START.z) * k
+    );
+    const lookY = 1.8 + rise * 0.55;
+    camera.lookAt(0, lookY - (1 - k) * 1.5, -9 - scrollP * 10);
+
+    // slow push-in on scroll: 58° → 52° → 45°
+    camera.fov = 58 - 6 * k - 7 * scrollP * k;
+    camera.updateProjectionMatrix();
 
     shards.forEach((s) => {
       s.mesh.position.y = s.baseY + Math.sin(t * 0.6 + s.phase) * 0.55;
       s.mesh.rotation.y += s.spin * 0.008;
       s.mesh.rotation.x += s.spin * 0.005;
     });
+
+    clouds.forEach((c) => {
+      c.s.position.x += c.speed * 0.016;
+      if (c.s.position.x > 150) c.s.position.x = -150;
+    });
+
+    glowInner.material.opacity = 0.9 + Math.sin(t * 1.7) * 0.06;
+    glowOuter.material.opacity = 0.36 + Math.sin(t * 1.1 + 1) * 0.05;
 
     const pos = moteGeo.getAttribute("position") as THREE.BufferAttribute;
     for (let i = 0; i < COUNT; i++) {
@@ -334,6 +399,10 @@ function buildScene(mount: HTMLElement, reduced: boolean): SceneHandles | null {
 
   if (reduced) {
     oceanMat.uniforms.uTime.value = 3.2;
+    camera.position.set(CAM_BASE.x, CAM_BASE.y + 6, CAM_BASE.z - 2);
+    camera.fov = 50;
+    camera.updateProjectionMatrix();
+    camera.lookAt(0, 3.5, -12);
     renderer.render(scene, camera);
   } else {
     animate();

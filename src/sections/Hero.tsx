@@ -3,18 +3,21 @@ import { Reveal } from "../components/Chrome";
 export default function Hero() {
   return (
     <section id="top" className="relative min-h-screen flex flex-col justify-between overflow-hidden">
-      {/* film sprockets along the very top */}
-      <div className="film-strip absolute top-0 inset-x-0 z-20" aria-hidden />
+      {/* sunlit haze behind the title card so words always sit on light */}
+      <div
+        className="absolute inset-x-0 top-0 bottom-0 z-[5] bg-[radial-gradient(80%_62%_at_50%_30%,rgba(247,251,248,0.85),rgba(247,251,248,0.42)_52%,rgba(247,251,248,0)_76%)]"
+        aria-hidden
+      />
 
       {/* opening credits */}
-      <div className="relative z-10 pt-24 sm:pt-32 text-center font-mono uppercase tracking-[0.34em] text-ink/60 text-[10.5px] sm:text-xs">
+      <div className="relative z-10 pt-28 sm:pt-36 text-center font-mono uppercase tracking-[0.34em] text-ink/70 text-[10.5px] sm:text-xs">
         <Reveal>
           <p className="anim-fade-up">Kousthubhee Krishna Kotte presents</p>
         </Reveal>
       </div>
 
       {/* title card */}
-      <div className="relative z-10 px-6 sm:px-12 text-center -mt-6 sm:-mt-10">
+      <div className="relative z-10 px-6 sm:px-12 text-center mt-8 sm:mt-10">
         <h1 className="font-display font-extrabold tracking-[-0.025em] leading-[0.98] text-ink select-none">
           <span className="anim-defocus block text-[clamp(2.5rem,7.2vw,6.4rem)]">From Systems to Data.</span>
           <span className="anim-defocus anim-d2 block text-[clamp(2.5rem,7.2vw,6.4rem)] text-teal">
@@ -23,19 +26,19 @@ export default function Hero() {
         </h1>
 
         <Reveal delay={900}>
-          <p className="mx-auto mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed text-ink/75">
+          <p className="mx-auto mt-8 max-w-2xl text-lg sm:text-xl leading-relaxed font-medium text-ink drop-shadow-[0_1px_0_rgba(247,251,248,0.7)]">
             A career moving across{" "}
-            <em className="font-semibold not-italic mark-aqua">technology, enterprise systems and business analytics</em>{" "}
+            <em className="font-bold not-italic mark-aqua">technology, enterprise systems and business analytics</em>{" "}
             — from Infosys server rooms to NEOMA classrooms in France, now exploring how{" "}
-            <em className="font-semibold not-italic mark-coral">AI and automation</em> turn data into practical business
+            <em className="font-bold not-italic mark-coral">AI and automation</em> turn data into practical business
             outcomes.
           </p>
         </Reveal>
 
         <Reveal delay={1150}>
-          <p className="mt-7 font-mono text-[10.5px] sm:text-[11px] uppercase tracking-[0.24em] text-ink/55">
-            starring <span className="text-teal">Python · SQL · Tableau</span> &{" "}
-            <span className="text-coral">n8n</span>
+          <p className="mt-7 font-mono text-[10.5px] sm:text-[11px] uppercase tracking-[0.24em] text-ink/75 font-medium drop-shadow-[0_1px_0_rgba(247,251,248,0.7)]">
+            starring <span className="text-teal font-semibold">Python · SQL · Tableau</span> &{" "}
+            <span className="text-coral font-semibold">n8n</span>
             <span className="mx-3 text-ink/30">—</span>
             from the enterprises of <span className="text-teal">Infosys</span> & the classrooms of{" "}
             <span className="text-teal">NEOMA</span>
@@ -68,7 +71,7 @@ export default function Hero() {
       {/* coordinates + roll cue */}
       <div className="relative z-10 px-6 sm:px-12 pb-20 sm:pb-24 pt-10">
         <Reveal delay={700}>
-          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-ink/55">
+          <div className="flex flex-wrap items-center justify-between gap-3 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.2em] text-ink/70 font-medium drop-shadow-[0_1px_0_rgba(247,251,248,0.7)]">
             <p>
               17.3850° N — 78.4867° E · <span className="text-teal">Hyderabad</span>
             </p>

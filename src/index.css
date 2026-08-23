@@ -287,16 +287,16 @@ body {
 
 /* highlight marker for prose */
 .mark-aqua {
-  background: linear-gradient(120deg, rgba(53, 179, 166, 0.28), rgba(53, 179, 166, 0.28)) no-repeat 0 68% / 100% 42%;
-  padding: 0 0.1em;
+  background: linear-gradient(120deg, rgba(53, 179, 166, 0.45), rgba(53, 179, 166, 0.45)) no-repeat 0 66% / 100% 46%;
+  padding: 0 0.14em;
 }
 .mark-coral {
-  background: linear-gradient(120deg, rgba(255, 122, 104, 0.32), rgba(255, 122, 104, 0.32)) no-repeat 0 68% / 100% 42%;
-  padding: 0 0.1em;
+  background: linear-gradient(120deg, rgba(255, 122, 104, 0.48), rgba(255, 122, 104, 0.48)) no-repeat 0 66% / 100% 46%;
+  padding: 0 0.14em;
 }
 .mark-gold {
-  background: linear-gradient(120deg, rgba(242, 181, 68, 0.38), rgba(242, 181, 68, 0.38)) no-repeat 0 68% / 100% 42%;
-  padding: 0 0.1em;
+  background: linear-gradient(120deg, rgba(242, 181, 68, 0.55), rgba(242, 181, 68, 0.55)) no-repeat 0 66% / 100% 46%;
+  padding: 0 0.14em;
 }
 
 /* dashed tide rule */

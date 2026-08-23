@@ -16,7 +16,7 @@ export default function App() {
 
       {/* depth veil: sea stays vivid up top, content readable below */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-[88vh] bottom-0 z-[1] bg-gradient-to-b from-transparent via-mist/75 to-mist/95"
+        className="pointer-events-none absolute inset-x-0 top-[88vh] bottom-0 z-[1] bg-gradient-to-b from-transparent via-mist/88 to-mist/[0.985]"
         aria-hidden
       />
 

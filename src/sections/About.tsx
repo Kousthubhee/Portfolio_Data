@@ -102,7 +102,7 @@ export function About() {
 
           <div className="space-y-5">
             <Reveal>
-              <p className="text-lg sm:text-xl leading-relaxed text-ink/78 max-w-2xl">
+              <p className="text-lg sm:text-xl leading-relaxed text-ink/95 max-w-2xl font-medium">
                 My career has never followed a completely straight line. I started with{" "}
                 <strong className="italic font-bold text-teal">computer science and enterprise technology</strong>, moved
                 into <strong className="italic font-bold text-coral">business analytics</strong>, explored product and
@@ -144,9 +144,9 @@ export function About() {
             ))}
 
             <Reveal>
-              <p className="pt-2 font-mono text-[11px] uppercase tracking-[0.24em] text-ink/50">
+              <p className="pt-2 font-mono text-[11px] uppercase tracking-[0.24em] text-ink/70 font-medium drop-shadow-[0_1px_0_rgba(247,251,248,0.7)]">
                 Today I work at the intersection of{" "}
-                <span className="text-coral">Data · Business · Technology · AI · Automation</span>
+                <span className="text-coral font-semibold">Data · Business · Technology · AI · Automation</span>
               </p>
             </Reveal>
           </div>

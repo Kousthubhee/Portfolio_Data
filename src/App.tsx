@@ -6,9 +6,12 @@ import { About, Skills } from "./sections/About";
 import { NumbersBand, Projects } from "./sections/Projects";
 import { Contact, Experience, Footer, Journey, NextChapter, QuoteBand } from "./sections/Closing";
 import { usePrefersReducedMotion } from "./lib/hooks";
+import FreeModelsRadar from "./components/FreeModelsRadar";
 
 export default function App() {
   const reduced = usePrefersReducedMotion();
+  const radar = new URLSearchParams(window.location.search).has("radar");
+  if (radar) return <FreeModelsRadar reduced={reduced} />;
   return (
     <div className="relative min-h-screen font-body text-ink antialiased">
       {/* the ocean — one continuous shot behind everything */}

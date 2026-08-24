@@ -413,6 +413,9 @@ export function Footer() {
             <a href={CONTACT.whatsappUrl} target="_blank" rel="noreferrer" className="font-mono text-[11px] uppercase tracking-[0.16em] text-seafoam/80 hover:text-coral transition-colors">
               WhatsApp
             </a>
+            <a href="?radar" className="font-mono text-[11px] uppercase tracking-[0.16em] text-gold/80 hover:text-coral transition-colors">
+              free-models radar ↗
+            </a>
           </div>
           <p className="mt-10 text-center font-mono text-[10px] uppercase tracking-[0.2em] text-mist/35">
             © 2026 · India → France → India → looking forward to the next adventure

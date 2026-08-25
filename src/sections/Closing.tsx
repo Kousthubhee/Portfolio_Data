@@ -219,7 +219,7 @@ export function NextChapter() {
           note="Not looking for a title — looking for an environment where data, technology, business thinking and AI solve meaningful problems."
         />
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-2 gap-6">
           <Reveal variant="pop">
             <div className="h-full rounded-[24px] border border-ink/10 bg-shell/88 backdrop-blur-md p-7 sm:p-8">
               <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Target roles</p>
@@ -234,30 +234,36 @@ export function NextChapter() {
           </Reveal>
           <Reveal variant="pop" delay={120}>
             <div className="h-full rounded-[24px] border border-ink/10 bg-shell/88 backdrop-blur-md p-7 sm:p-8">
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Working model</p>
-              <ul className="mt-5 space-y-3">
-                {WORK_MODELS.map((m) => (
-                  <li key={m} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-5 py-3.5 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
-                    <span className="font-display font-bold text-lg text-ink">{m}</span>
-                    <svg viewBox="0 0 26 12" className="w-6 h-3 text-teal" aria-hidden>
-                      <path d="M1 8c3-4.6 5-4.6 7.6 0s4.6 4.6 7.2 0 4.4-4.2 6.8-1" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                    </svg>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal variant="pop" delay={240}>
-            <div className="h-full rounded-[24px] border border-ink/10 bg-shell/88 backdrop-blur-md p-7 sm:p-8">
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Location</p>
-              <ul className="mt-5 space-y-3">
-                {LOCATIONS.map((l) => (
-                  <li key={l} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-5 py-3.5 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
-                    <span className="font-display font-bold text-lg text-ink">{l}</span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-teal">open</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Open to</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/40">working model &amp; locations</p>
+              </div>
+              <div className="mt-5 grid sm:grid-cols-2 gap-4">
+                <div>
+                  <p className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink/45 mb-2.5">Working model</p>
+                  <ul className="space-y-2.5">
+                    {WORK_MODELS.map((m) => (
+                      <li key={m} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-4 py-3 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
+                        <span className="font-display font-bold text-[16px] text-ink">{m}</span>
+                        <svg viewBox="0 0 26 12" className="w-6 h-3 text-teal" aria-hidden>
+                          <path d="M1 8c3-4.6 5-4.6 7.6 0s4.6 4.6 7.2 0 4.4-4.2 6.8-1" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                        </svg>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink/45 mb-2.5">Locations</p>
+                  <ul className="space-y-2.5">
+                    {LOCATIONS.map((l) => (
+                      <li key={l} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-4 py-3 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
+                        <span className="font-display font-bold text-[16px] text-ink">{l}</span>
+                        <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-teal">open</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
               <p className="mt-5 text-[13px] leading-relaxed text-ink/60">
                 Moving from India to France and back has made me comfortable adapting to new environments and working
                 across cultures. <span className="font-semibold text-coral">Open to relocation.</span>

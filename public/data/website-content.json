@@ -77,7 +77,7 @@
     { "code": "HYD", "place": "Hyderabad, India", "years": "2017 – 2023", "note": "B.E. Computer Science · Systems Engineer @ Infosys" },
     { "code": "FR", "place": "Rouen, France", "years": "2024 – 2026", "note": "M.Sc. Business Analytics · Incubator & Venture Studio" },
     { "code": "HYD", "place": "Hyderabad, India", "years": "2026", "note": "Projects · AI · Automation · Exploration" },
-    { "code": "→?", "place": "India · Europe · International", "years": "Next", "note": "Open to relocation — remote, hybrid or on-site", "open": true }
+    { "code": "→?", "place": "India · Europe · Worldwide", "years": "Next", "note": "Open to relocation — remote, hybrid or on-site", "open": true }
   ],
   "languages": [
     { "name": "Telugu", "level": "Native" },
@@ -89,7 +89,7 @@
     { "period": "2017 – 2021", "place": "Hyderabad, India", "title": "B.E. · Computer Science & Engineering", "org": "Stanley College of Engineering & Technology", "desc": "Foundations in data structures, algorithms, database management systems, AI, data mining and machine learning." },
     { "period": "2021", "place": "Remote, India", "title": "Data Analytics Intern", "org": "ShapeAI", "desc": "Python, Pandas, NumPy and Tableau — cleaning 10,000+ records and translating analytical observations into business recommendations." },
     { "period": "2021 – 2023", "place": "Hyderabad, India", "title": "Systems Engineer", "org": "Infosys", "desc": "Enterprise middleware, data operations, BI support, SQL-based reporting and OBIEE migrations across three production environments." },
-    { "period": "2024 – 2025", "place": "Rouen, France", "title": "M.Sc. Business Analytics", "org": "NEOMA Business School", "desc": "Statistics, predictive analytics, business intelligence, machine learning and data modeling — plus a venture-studio stint in product analytics." },
+    { "period": "2024 – 2025", "place": "Rouen, France", "title": "M.Sc. Business Analytics", "org": "NEOMA Business School", "desc": "Statistics, predictive analytics, business intelligence, machine learning, SQL, Python and data modeling." },
     { "period": "May 2025 – Jun 2026", "place": "Rouen, France", "title": "Data & Product Analytics Lead", "org": "NEOMA Incubator · Venture Studio", "desc": "User research with 240+ international students, product KPIs, experiments on user flows, and an AI-powered FAQ solution that cut repetitive support queries by ~30%." },
     { "period": "2026", "place": "India", "title": "Professional Development", "org": "Career Exploration", "desc": "Building projects across analytics, BI, cloud, AI and automation while exploring opportunities in India and internationally." },
     { "period": "Next", "place": "Unknown — and open to possibilities", "title": "What's Next?", "org": "The next chapter is still being written", "desc": "Open to opportunities in India, Europe, and internationally.", "future": true }

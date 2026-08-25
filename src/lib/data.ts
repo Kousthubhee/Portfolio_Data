@@ -116,7 +116,7 @@ export const ROUTE_LEGS: RouteLeg[] = [
   },
   {
     code: "OPEN",
-    place: "India · Europe · International",
+    place: "India · Europe · Worldwide",
     years: "Next",
     note: "Open to relocation — remote, hybrid or on-site",
     open: true,
@@ -167,7 +167,7 @@ export const TIMELINE: TimelineNode[] = [
     place: "Rouen, France",
     title: "M.Sc. Business Analytics",
     org: "NEOMA Business School",
-    desc: "Statistics, predictive analytics, business intelligence, machine learning and data modeling — plus a venture-studio stint in product analytics.",
+    desc: "Statistics, predictive analytics, business intelligence, machine learning, SQL, Python and data modeling.",
   },
   {
     period: "May 2025 – Jun 2026",

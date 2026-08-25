@@ -235,7 +235,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     org: "NEOMA Business School Incubator",
     role: "Data & Product Analytics Lead · Venture Studio",
     place: "Rouen, France",
-    period: "May 2025 – Sep 2025",
+    period: "May 2025 – Jun 2026",
     bullets: [
       "Led user research involving 240+ international students, using structured analysis of survey responses to identify recurring onboarding friction points.",
       "Translated user insights into measurable product requirements and contributed to a centralized student onboarding platform.",

@@ -95,8 +95,8 @@ export const ROUTE_LEGS: RouteLeg[] = [
   {
     code: "ROUEN",
     place: "Rouen, France",
-    years: "2024 – 2025",
-    note: "M.Sc. Business Analytics · NEOMA Business School",
+    years: "2024 – 2026",
+    note: "M.Sc. Business Analytics · Incubator & Venture Studio",
   },
   {
     code: "HYD",
@@ -158,6 +158,13 @@ export const TIMELINE: TimelineNode[] = [
     title: "M.Sc. Business Analytics",
     org: "NEOMA Business School",
     desc: "Statistics, predictive analytics, business intelligence, machine learning and data modeling — plus a venture-studio stint in product analytics.",
+  },
+  {
+    period: "May 2025 – Jun 2026",
+    place: "Rouen, France",
+    title: "Data & Product Analytics Lead",
+    org: "NEOMA Incubator · Venture Studio",
+    desc: "User research with 240+ international students, product KPIs, experiments on user flows, and an AI-powered FAQ solution that cut repetitive support queries by ~30%.",
   },
   {
     period: "2026",

@@ -303,7 +303,7 @@ export function Contact() {
               <h3 className="mt-4 font-display font-bold text-3xl sm:text-4xl leading-tight tracking-tight">
                 Open to relocation.
                 <br />
-                Remote · Hybrid · <span className="text-gold">International.</span>
+                Remote · Hybrid · <span className="text-gold">Worldwide.</span>
               </h3>
               <p className="mt-5 max-w-md text-[15px] leading-relaxed text-seafoam/85">
                 I am looking for opportunities where I can keep learning, solve meaningful problems, and turn data and

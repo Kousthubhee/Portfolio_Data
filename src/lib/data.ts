@@ -74,6 +74,16 @@ export const JOURNEY: JourneyBlock[] = [
     ],
     highlight: "Find repetitive work → understand the workflow → automate → measure the result.",
   },
+  {
+    index: "05",
+    title: "The through-line — I am highly adaptable.",
+    org: "India → France → India",
+    body: [
+      "Every jump — a new country, a new language, a new domain — taught me something important about myself: I am highly adaptable.",
+      "New environment, unfamiliar tech stack, a role I have never done before — I find my footing fast, and I make it work.",
+    ],
+    highlight: "Give me a chance with any environment or technology, and I will figure it out.",
+  },
 ];
 
 /* ---------------- route card ---------------- */

@@ -266,8 +266,19 @@ export function NextChapter() {
           </Reveal>
         </div>
 
+        <Reveal delay={150}>
+          <div className="mt-12 max-w-3xl mx-auto rounded-[22px] border-l-[3px] border-coral bg-shell/80 backdrop-blur-md px-7 sm:px-8 py-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-coral mb-3">An honest line</p>
+            <p className="font-display font-semibold text-lg sm:text-[21px] leading-relaxed text-ink/90">
+              I haven&rsquo;t mastered every tool on this page, and I haven&rsquo;t touched all of them in production
+              yet. What I can promise instead: I learn quickly, I adapt quickly, and I turn curiosity into working
+              systems. <span className="text-coral">Give me a chance, and I will grow into the role.</span>
+            </p>
+          </div>
+        </Reveal>
+
         <Reveal delay={200}>
-          <p className="mt-12 text-center font-mono text-[11px] uppercase tracking-[0.24em] text-ink/50">
+          <p className="mt-10 text-center font-mono text-[11px] uppercase tracking-[0.24em] text-ink/50">
             Perhaps deeper into analytics engineering · perhaps further into AI · perhaps another country —{" "}
             <span className="text-coral">the next chapter is still being written</span>
           </p>
@@ -384,22 +395,13 @@ export function Footer() {
       <div className="film-strip h-7" aria-hidden />
       <div className="bg-abyss text-mist">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 sm:py-16">
-          <div className="text-center font-mono text-[10.5px] uppercase tracking-[0.3em] text-mist/45">
-            — end credits —
-          </div>
-          <h2 className="mt-6 text-center font-display font-extrabold tracking-tight text-[clamp(1.8rem,5vw,3.4rem)] leading-tight">
+          <h2 className="text-center font-display font-extrabold tracking-tight text-[clamp(1.8rem,5vw,3.4rem)] leading-tight">
             Kousthubhee Krishna Kotte
             <span className="text-coral">.</span>
           </h2>
           <p className="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.22em] text-seafoam/70">
             Data &amp; BI Analyst · Business Analytics · AI &amp; Automation
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-mist/50">
-            <span>starring — Python, SQL, Tableau</span>
-            <span>directed by — curiosity</span>
-            <span>produced by — persistence</span>
-            <span>location — HYD → ROUEN → HYD</span>
-          </div>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
             <a href={`mailto:${CONTACT.email}`} className="font-mono text-[11px] uppercase tracking-[0.16em] text-seafoam/80 hover:text-coral transition-colors">
               {CONTACT.email}

@@ -219,7 +219,7 @@ export function NextChapter() {
           note="Not looking for a title — looking for an environment where data, technology, business thinking and AI solve meaningful problems."
         />
 
-        <div className="grid lg:grid-cols-3 gap-6">
+        <div className="grid lg:grid-cols-2 gap-6">
           <Reveal variant="pop">
             <div className="h-full rounded-[24px] border border-ink/10 bg-shell/88 backdrop-blur-md p-7 sm:p-8">
               <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Target roles</p>
@@ -234,30 +234,36 @@ export function NextChapter() {
           </Reveal>
           <Reveal variant="pop" delay={120}>
             <div className="h-full rounded-[24px] border border-ink/10 bg-shell/88 backdrop-blur-md p-7 sm:p-8">
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Working model</p>
-              <ul className="mt-5 space-y-3">
-                {WORK_MODELS.map((m) => (
-                  <li key={m} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-5 py-3.5 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
-                    <span className="font-display font-bold text-lg text-ink">{m}</span>
-                    <svg viewBox="0 0 26 12" className="w-6 h-3 text-teal" aria-hidden>
-                      <path d="M1 8c3-4.6 5-4.6 7.6 0s4.6 4.6 7.2 0 4.4-4.2 6.8-1" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-                    </svg>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </Reveal>
-          <Reveal variant="pop" delay={240}>
-            <div className="h-full rounded-[24px] border border-ink/10 bg-shell/88 backdrop-blur-md p-7 sm:p-8">
-              <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Location</p>
-              <ul className="mt-5 space-y-3">
-                {LOCATIONS.map((l) => (
-                  <li key={l} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-5 py-3.5 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
-                    <span className="font-display font-bold text-lg text-ink">{l}</span>
-                    <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-teal">open</span>
-                  </li>
-                ))}
-              </ul>
+              <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                <p className="font-mono text-[10.5px] uppercase tracking-[0.22em] text-coral">Open to</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink/40">working model &amp; locations</p>
+              </div>
+              <div className="mt-5 grid sm:grid-cols-2 gap-4">
+                <div>
+                  <p className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink/45 mb-2.5">Working model</p>
+                  <ul className="space-y-2.5">
+                    {WORK_MODELS.map((m) => (
+                      <li key={m} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-4 py-3 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
+                        <span className="font-display font-bold text-[16px] text-ink">{m}</span>
+                        <svg viewBox="0 0 26 12" className="w-6 h-3 text-teal" aria-hidden>
+                          <path d="M1 8c3-4.6 5-4.6 7.6 0s4.6 4.6 7.2 0 4.4-4.2 6.8-1" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+                        </svg>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <p className="font-mono text-[9.5px] uppercase tracking-[0.18em] text-ink/45 mb-2.5">Locations</p>
+                  <ul className="space-y-2.5">
+                    {LOCATIONS.map((l) => (
+                      <li key={l} className="flex items-center justify-between rounded-2xl border border-ink/10 bg-mist/70 px-4 py-3 transition-all duration-300 hover:border-coral/50 hover:translate-x-1">
+                        <span className="font-display font-bold text-[16px] text-ink">{l}</span>
+                        <span className="font-mono text-[9.5px] uppercase tracking-[0.16em] text-teal">open</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
               <p className="mt-5 text-[13px] leading-relaxed text-ink/60">
                 Moving from India to France and back has made me comfortable adapting to new environments and working
                 across cultures. <span className="font-semibold text-coral">Open to relocation.</span>
@@ -266,8 +272,19 @@ export function NextChapter() {
           </Reveal>
         </div>
 
+        <Reveal delay={150}>
+          <div className="mt-12 max-w-3xl mx-auto rounded-[22px] border-l-[3px] border-coral bg-shell/80 backdrop-blur-md px-7 sm:px-8 py-6">
+            <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-coral mb-3">An honest line</p>
+            <p className="font-display font-semibold text-lg sm:text-[21px] leading-relaxed text-ink/90">
+              I haven&rsquo;t mastered every tool on this page, and I haven&rsquo;t touched all of them in production
+              yet. What I can promise instead: I learn quickly, I adapt quickly, and I turn curiosity into working
+              systems. <span className="text-coral">Give me a chance, and I will grow into the role.</span>
+            </p>
+          </div>
+        </Reveal>
+
         <Reveal delay={200}>
-          <p className="mt-12 text-center font-mono text-[11px] uppercase tracking-[0.24em] text-ink/50">
+          <p className="mt-10 text-center font-mono text-[11px] uppercase tracking-[0.24em] text-ink/50">
             Perhaps deeper into analytics engineering · perhaps further into AI · perhaps another country —{" "}
             <span className="text-coral">the next chapter is still being written</span>
           </p>
@@ -303,7 +320,7 @@ export function Contact() {
               <h3 className="mt-4 font-display font-bold text-3xl sm:text-4xl leading-tight tracking-tight">
                 Open to relocation.
                 <br />
-                Remote · Hybrid · <span className="text-gold">International.</span>
+                Remote · Hybrid · <span className="text-gold">Worldwide.</span>
               </h3>
               <p className="mt-5 max-w-md text-[15px] leading-relaxed text-seafoam/85">
                 I am looking for opportunities where I can keep learning, solve meaningful problems, and turn data and
@@ -384,22 +401,13 @@ export function Footer() {
       <div className="film-strip h-7" aria-hidden />
       <div className="bg-abyss text-mist">
         <div className="mx-auto max-w-7xl px-5 sm:px-8 py-14 sm:py-16">
-          <div className="text-center font-mono text-[10.5px] uppercase tracking-[0.3em] text-mist/45">
-            — end credits —
-          </div>
-          <h2 className="mt-6 text-center font-display font-extrabold tracking-tight text-[clamp(1.8rem,5vw,3.4rem)] leading-tight">
+          <h2 className="text-center font-display font-extrabold tracking-tight text-[clamp(1.8rem,5vw,3.4rem)] leading-tight">
             Kousthubhee Krishna Kotte
             <span className="text-coral">.</span>
           </h2>
           <p className="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.22em] text-seafoam/70">
             Data &amp; BI Analyst · Business Analytics · AI &amp; Automation
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-8 gap-y-2 font-mono text-[10.5px] uppercase tracking-[0.16em] text-mist/50">
-            <span>starring — Python, SQL, Tableau</span>
-            <span>directed by — curiosity</span>
-            <span>produced by — persistence</span>
-            <span>location — HYD → ROUEN → HYD</span>
-          </div>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-5">
             <a href={`mailto:${CONTACT.email}`} className="font-mono text-[11px] uppercase tracking-[0.16em] text-seafoam/80 hover:text-coral transition-colors">
               {CONTACT.email}

@@ -74,6 +74,16 @@ export const JOURNEY: JourneyBlock[] = [
     ],
     highlight: "Find repetitive work → understand the workflow → automate → measure the result.",
   },
+  {
+    index: "05",
+    title: "The through-line — I am highly adaptable.",
+    org: "India → France → India",
+    body: [
+      "Every jump — a new country, a new language, a new domain — taught me something important about myself: I am highly adaptable.",
+      "New environment, unfamiliar tech stack, a role I have never done before — I find my footing fast, and I make it work.",
+    ],
+    highlight: "Give me a chance with any environment or technology, and I will figure it out.",
+  },
 ];
 
 /* ---------------- route card ---------------- */
@@ -95,8 +105,8 @@ export const ROUTE_LEGS: RouteLeg[] = [
   {
     code: "ROUEN",
     place: "Rouen, France",
-    years: "2024 – 2025",
-    note: "M.Sc. Business Analytics · NEOMA Business School",
+    years: "2024 – 2026",
+    note: "M.Sc. Business Analytics · Incubator & Venture Studio",
   },
   {
     code: "HYD",
@@ -106,7 +116,7 @@ export const ROUTE_LEGS: RouteLeg[] = [
   },
   {
     code: "OPEN",
-    place: "India · Europe · International",
+    place: "India · Europe · Worldwide",
     years: "Next",
     note: "Open to relocation — remote, hybrid or on-site",
     open: true,
@@ -157,7 +167,14 @@ export const TIMELINE: TimelineNode[] = [
     place: "Rouen, France",
     title: "M.Sc. Business Analytics",
     org: "NEOMA Business School",
-    desc: "Statistics, predictive analytics, business intelligence, machine learning and data modeling — plus a venture-studio stint in product analytics.",
+    desc: "Statistics, predictive analytics, business intelligence, machine learning, SQL, Python and data modeling.",
+  },
+  {
+    period: "May 2025 – Jun 2026",
+    place: "Rouen, France",
+    title: "Data & Product Analytics Lead",
+    org: "NEOMA Incubator · Venture Studio",
+    desc: "User research with 240+ international students, product KPIs, experiments on user flows, and an AI-powered FAQ solution that cut repetitive support queries by ~30%.",
   },
   {
     period: "2026",
@@ -235,7 +252,7 @@ export const EXPERIENCE: ExperienceEntry[] = [
     org: "NEOMA Business School Incubator",
     role: "Data & Product Analytics Lead · Venture Studio",
     place: "Rouen, France",
-    period: "May 2025 – Sep 2025",
+    period: "May 2025 – Jun 2026",
     bullets: [
       "Led user research involving 240+ international students, using structured analysis of survey responses to identify recurring onboarding friction points.",
       "Translated user insights into measurable product requirements and contributed to a centralized student onboarding platform.",

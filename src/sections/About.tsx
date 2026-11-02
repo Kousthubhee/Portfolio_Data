@@ -27,7 +27,7 @@ function RouteCard() {
                     : "bg-mist text-teal border border-teal/25 group-hover:bg-teal group-hover:text-shell"
                 }`}
               >
-                {leg.code === "ROUEN" ? "RNE" : leg.code === "OPEN" ? "→?" : leg.code}
+                {leg.code === "ROUEN" ? "FR" : leg.code === "OPEN" ? "→?" : leg.code}
               </span>
               <div className="pb-5">
                 <div className="flex flex-wrap items-baseline gap-x-3">

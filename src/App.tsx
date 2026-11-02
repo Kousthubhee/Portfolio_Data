@@ -1,6 +1,6 @@
 import OceanScene from "./components/OceanScene";
 import { Nav, NoiseOverlay, SkillMarquee } from "./components/Chrome";
-import { Letterbox, SceneStamp, Vignette } from "./components/Cinematic";
+import { SceneStamp, Vignette } from "./components/Cinematic";
 import Hero from "./sections/Hero";
 import { About, Skills } from "./sections/About";
 import { NumbersBand, Projects } from "./sections/Projects";
@@ -23,7 +23,6 @@ export default function App() {
       {/* cinematic chrome */}
       <Vignette />
       <NoiseOverlay />
-      <Letterbox />
       <SceneStamp />
       <Nav />
 
